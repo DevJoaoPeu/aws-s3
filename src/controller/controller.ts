@@ -1,17 +1,19 @@
 import { Request, Response } from "express";
+import UploadImagesService from "../services/UploadImagesService";
 
 class Controller {
-    public async getTeste(req: Request, res: Response): Promise<Response> {
-        return res.json({ok: true})
-    }
-    public async upload(req: Request, res: Response): Promise<Response> {
-        return res.json({ok: true})
-    }
+  public async getTeste(req: Request, res: Response): Promise<Response> {
+    return res.json({ ok: true });
+  }
+  public async upload(req: Request, res: Response): Promise<Response> {
+    await UploadImagesService.execute()
 
-    public async delete(req: Request, res: Response): Promise<Response> {
-        return res.json({ok: true})
-    }
-    
+    return res.send()
+  }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    return res.json({ ok: true });
+  }
 }
 
-export default new Controller()
+export default new Controller();
