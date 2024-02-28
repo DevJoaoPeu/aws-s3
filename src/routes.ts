@@ -1,5 +1,9 @@
 import { Router, Request, Response } from "express";
 import controller from "./controller/controller";
+import multerConfig from "./config/upload";
+import multer from "multer";
+
+const upload = multer(multerConfig);
 
 class Routes {
   routes = Router();
@@ -10,7 +14,7 @@ class Routes {
 
   public initRoutes() {
     this.routes.get("/teste", controller.getTeste);
-    this.routes.post("/", controller.upload);
+    this.routes.post("/", upload.single("image"), controller.upload);
     this.routes.delete("/:filename", controller.delete);
   }
 }
