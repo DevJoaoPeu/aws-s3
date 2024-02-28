@@ -1,7 +1,5 @@
-
-
 class UploadImagesService {
-
+  async execute(): Promise<void> {}
 }
 
-export default UploadImagesService;
+export default new UploadImagesService();
