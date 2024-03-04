@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UploadImagesService from "../services/UploadImagesService";
+import DeleteImagesService from "../services/DeleteImagesService"
 
 class Controller {
   public async getTeste(req: Request, res: Response): Promise<Response> {
@@ -14,7 +15,11 @@ class Controller {
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    return res.json({ ok: true });
+    const { filename } = req.params;
+
+    await DeleteImagesService.execute(filename);
+
+    return res.send();
   }
 }
 
