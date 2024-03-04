@@ -26,7 +26,7 @@ class S3Storage {
 
     this.client
       .putObject({
-        Bucket: "teste-s3",
+        Bucket: "joaoprog-bucket",
         Key: fileName,
         ACL: "public-read",
         Body: fileContent,
@@ -35,6 +35,14 @@ class S3Storage {
       .promise();
 
     await fs.promises.unlink(originalPath);
+  }
+
+  async deleteFile(filename: string): Promise<void>{
+    this.client.deleteObject({
+      Bucket: "joaoprog-bucket",
+      Key: filename
+    })
+    .promise()
   }
 }
 
