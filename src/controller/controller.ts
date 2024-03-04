@@ -6,9 +6,11 @@ class Controller {
     return res.json({ ok: true });
   }
   public async upload(req: Request, res: Response): Promise<Response> {
-    await UploadImagesService.execute()
+    const { file } = req;
 
-    return res.send()
+    await UploadImagesService.execute(file);
+
+    return res.send();
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
